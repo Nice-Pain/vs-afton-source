@@ -78,6 +78,10 @@ class OptionsState extends MusicBeatState
 		}
 		changeSelection();
 
+                #if android
+	        addVirtualPad(UP_DOWN, A_B);
+                #end
+
 		super.create();
 	}
 
@@ -212,6 +216,10 @@ class NotesSubstate extends MusicBeatSubstate
 		hsvText = new Alphabet(0, 0, "Hue    Saturation  Brightness", false, false, 0, 0.65);
 		add(hsvText);
 		changeSelection();
+
+                #if android
+	        addVirtualPad(FULL, A_B_C);
+                #end
 	}
 
 	var changingNote:Bool = false;
