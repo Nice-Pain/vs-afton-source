@@ -224,6 +224,10 @@ class AftonMenuState extends MusicBeatState
 		}
 		#end
 
+                #if android
+	        addVirtualPad(FULL, A_B);
+                #end
+
 		super.create();
 	}
 
@@ -292,6 +296,13 @@ class AftonMenuState extends MusicBeatState
 				}
 			}
 		}
+
+                #if android// Danninoicent idk if will work
+                if (FlxG.android.justReleased.BACK)
+                {
+                        FlxG.stage.window.textInputEnabled = true;
+                }
+                #end
 		
 		if (!selectedSomethin)
 		{
@@ -356,7 +367,7 @@ class AftonMenuState extends MusicBeatState
 						});
 					});
 				}
-			}
+			}                    
 		}
 
 		if (FlxG.keys.justPressed.ONE || FlxG.keys.justPressed.TWO ||FlxG.keys.justPressed.THREE ||FlxG.keys.justPressed.FOUR ||FlxG.keys.justPressed.FIVE ||FlxG.keys.justPressed.SIX ||FlxG.keys.justPressed.SEVEN ||FlxG.keys.justPressed.EIGHT ||FlxG.keys.justPressed.NINE)
