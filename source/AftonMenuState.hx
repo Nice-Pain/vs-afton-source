@@ -225,7 +225,14 @@ class AftonMenuState extends MusicBeatState
 		#end
 
                 #if android
-	        addVirtualPad(FULL, A_B);
+                if (!FlxG.save.data.matpatUnlocked)
+                {
+	                addVirtualPad(FULL, A_B_C);
+                }
+                else
+                {
+	                addVirtualPad(FULL, A_B);
+                }
                 #end
 
 		super.create();
@@ -297,10 +304,28 @@ class AftonMenuState extends MusicBeatState
 			}
 		}
 
-                #if android// Danninoicent idk if will work
-                if (FlxG.android.justReleased.BACK)
+                #if android
+                if (!FlxG.save.data.matpatUnlocked)
                 {
-                        FlxG.stage.window.textInputEnabled = true;
+                        if (_virtualpad.buttonC.justPressed){
+				FlxG.mouse.visible = false;
+				PlayState.storyPlaylist = ['Just-A-Theory'];
+				PlayState.isStoryMode = false;
+				
+				var diffic = "";
+					
+				PlayState.SONG = Song.loadFromJson('just-a-theory' + diffic, 'just-a-theory');
+				PlayState.storyWeek = 0;
+				PlayState.campaignScore = 0;
+					
+				matpatUnlocked = true;
+
+				FlxG.save.data.matpatUnlocked = matpatUnlocked;
+				FlxG.save.flush();
+
+				LoadingState.loadAndSwitchState(new PlayState());
+				FlxG.sound.music.fadeOut();
+			}              
                 }
                 #end
 		
