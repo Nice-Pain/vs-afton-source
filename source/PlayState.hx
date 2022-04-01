@@ -803,7 +803,7 @@ class PlayState extends MusicBeatState
 				banner.antialiasing = true;
 				add(banner);
 
-                                if (!AftonMenuState.umbraBeaten)
+                                if (!FlxG.save.data.umbraBeaten)
                                 {
 				        var sbplush:BGSprite = new BGSprite('backgrounds/' + curStage + '/cretin', 1240, 450, 1, 1);
 				        sbplush.setGraphicSize(Std.int(sbplush.width * 1.6));
@@ -2040,7 +2040,7 @@ class PlayState extends MusicBeatState
 				introAssets.set('default', ['ready', 'set', 'go']);
 				introAssets.set('pixel', ['pixelUI/ready-pixel', 'pixelUI/set-pixel', 'pixelUI/date-pixel']);
 				
-				if(curSong.toLowerCase() == 'nightmare' && !AftonMenuState.umbraBeaten)
+				if(curSong.toLowerCase() == 'nightmare' && !FlxG.save.data.umbraBeaten)
                                 {
 					FlxG.mouse.visible = true;
                                 }
