@@ -803,16 +803,16 @@ class PlayState extends MusicBeatState
 				banner.antialiasing = true;
 				add(banner);
 
-				var sbplush:BGSprite = new BGSprite('backgrounds/' + curStage + '/cretin', 1240, 450, 1, 1);
-				sbplush.setGraphicSize(Std.int(sbplush.width * 1.6));
-				sbplush.antialiasing = true;
-				sbplush.updateHitbox();
-				sbplush.active = !AftonMenuState.umbraBeaten;
-				sbplush.visible = !AftonMenuState.umbraBeaten;
-				add(sbplush);
+                                if (!AftonMenuState.umbraBeaten)
+                                {
+				        var sbplush:BGSprite = new BGSprite('backgrounds/' + curStage + '/cretin', 1240, 450, 1, 1);
+				        sbplush.setGraphicSize(Std.int(sbplush.width * 1.6));
+				        sbplush.antialiasing = true;
+				        sbplush.updateHitbox();
+				        add(sbplush);
 
-				if(sbplush.active)
 					FlxMouseEventManager.add(sbplush, function onMouseDown(sbplush:BGSprite){umbraPlay();}, null);
+                                }
 
 				fireSpring = new FlxSprite(-260, -100);
 				fireSpring.frames = Paths.getSparrowAtlas('backgrounds/' + curStage + '/fire');
@@ -2040,10 +2040,15 @@ class PlayState extends MusicBeatState
 				introAssets.set('default', ['ready', 'set', 'go']);
 				introAssets.set('pixel', ['pixelUI/ready-pixel', 'pixelUI/set-pixel', 'pixelUI/date-pixel']);
 				
-				FlxG.mouse.visible = false;
-				
 				if(curSong.toLowerCase() == 'nightmare' && !AftonMenuState.umbraBeaten)
+                                {
 					FlxG.mouse.visible = true;
+                                }
+                                else
+                                {
+					FlxG.mouse.visible = false;
+                                }
+
 				var introAlts:Array<String> = introAssets.get('default');
 				var antialias:Bool = ClientPrefs.globalAntialiasing;
 				if(isPixelStage) {
