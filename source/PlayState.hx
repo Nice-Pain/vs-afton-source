@@ -302,7 +302,9 @@ class PlayState extends MusicBeatState
 	var storyDifficultyText:String = "";
 	var detailsText:String = "";
 	var detailsPausedText:String = "";
-	#end
+	#else
+	var curPortrait:String = "";
+        #end
 
 	private var luaArray:Array<FunkinLua> = [];
 
