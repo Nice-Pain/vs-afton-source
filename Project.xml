@@ -101,7 +101,7 @@
 	<haxelib name="discord_rpc" if="desktop"/>
 	<!-- <haxelib name="hxcpp-debug-server" if="desktop"/> -->
         <haxelib name="extension-webview" if="android"/>
-        <haxelib name="androidtools" if="android"/>
+        <haxelib name="AndroidTools" if="android"/>
 
         <config:android permission="android.permission.read_external_storage" if="android"/>
         <config:android permission="android.permission.write_external_storage" if="android"/>
