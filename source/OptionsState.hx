@@ -31,7 +31,7 @@ using StringTools;
 // TO DO: Redo the menu creation system for not being as dumb
 class OptionsState extends MusicBeatState
 {
-	var options:Array<String> = ['Notes', 'Controls', 'Preferences'];
+	var options:Array<String> = ['Notes', 'Controls' #if android, 'Android Controls' #end, 'Preferences'];
 	private var grpOptions:FlxTypedGroup<Alphabet>;
 	private static var curSelected:Int = 0;
 	public static var menuBG:FlxSprite;
@@ -113,12 +113,19 @@ class OptionsState extends MusicBeatState
 				item.alpha = 0;
 			}
 
+                        #if android// better look in menu
+                        _virtualpad.alpha = 0;
+                        #end
+
 			switch(options[curSelected]) {
 				case 'Notes':
 					openSubState(new NotesSubstate());
 
 				case 'Controls':
 					openSubState(new ControlsSubstate());
+
+				case 'Android Controls':
+					MusicBeatState.switchState(new android.AndroidControlsMenu());
 
 				case 'Preferences':
 					openSubState(new PreferencesSubstate());
@@ -319,7 +326,12 @@ class NotesSubstate extends MusicBeatSubstate
 				grpNotes.forEachAlive(function(spr:FlxSprite) {
 					spr.alpha = 0;
 				});
-				close();
+			        #if android
+                                flixel.addons.transition.FlxTransitionableState.skipNextTransOut = true;
+			        FlxG.resetState();
+                                #else
+                                close();
+                                #end
 			}
 			changingNote = false;
 			FlxG.sound.play(Paths.sound('cancelMenu'));
@@ -507,7 +519,12 @@ class ControlsSubstate extends MusicBeatSubstate {
 						spr.alpha = 0;
 					}
 				}
-				close();
+			        #if android
+                                flixel.addons.transition.FlxTransitionableState.skipNextTransOut = true;
+			        FlxG.resetState();
+                                #else
+                                close();
+                                #end
 				FlxG.sound.play(Paths.sound('cancelMenu'));
 			}
 
@@ -713,10 +730,8 @@ class PreferencesSubstate extends MusicBeatSubstate
 		'Hide HUD',
 		'Hide Song Length',
 		'Flashing Lights',
-		'Camera Zooms'
-		#if !mobile
-		,'FPS Counter'
-		#end
+		'Camera Zooms',
+                'FPS Counter'
 	];
 
 	private var grpOptions:FlxTypedGroup<Alphabet>;
@@ -833,7 +848,12 @@ class PreferencesSubstate extends MusicBeatSubstate
 				showCharacter.alpha = 0;
 			}
 			descText.alpha = 0;
-			close();
+			#if android
+                        flixel.addons.transition.FlxTransitionableState.skipNextTransOut = true;
+			FlxG.resetState();
+                        #else
+                        close();
+                        #end
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 		}
 
