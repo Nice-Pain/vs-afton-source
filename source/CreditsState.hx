@@ -26,6 +26,10 @@ class CreditsState extends MusicBeatState
 	private var iconArray:Array<AttachedSprite> = [];
 
 	private static var creditsStuff:Array<Dynamic> = [ //Name - Icon name - Description - Link - BG Color
+		['Android Port'],
+		['Saw (M.A. Jigsaw)','saw','Main Coder','https://www.youtube.com/channel/UC2Sk7vtPzOvbVzdVTWrribQ', 0xFFF73838],
+                // Danninoicent if he help me
+		[''],
 		["Funkin' at Freddy's"],
 		['JcJack',		'jcjack',		'Lead Director',					'https://twitter.com/JcJack777',	0xFFFFDD33],
 		['SpagOs',			'spagos',		'Co-director\nProfessional Woman Kisser',				'https://twitter.com/SpagOsArt',		0xFFC30085],
