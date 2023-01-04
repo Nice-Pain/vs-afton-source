@@ -30,7 +30,7 @@ class SUtil
     #if android
     private static var aDir:String = null;
     private static var sPath:String = Environment.getExternalStorageDirectory();  
-    private static var grantedPermsList:Array<Permissions> = Environment.getGrantedPermissions();  
+    private static var grantedPermsList:Array<android.os.Environment> = Environment.getGrantedPermissions();  
     #end
 
     public static function getPath():String #if android return Environment.getExternalStorageDirectory() + '/' + '.' + Lib.application.meta.get('file') +
@@ -170,6 +170,16 @@ class SUtil
     public static function applicationAlert(title:String, description:String){
         Application.current.window.alert(description, title);
     }
+
+	private static function println(msg:String):Void
+	{
+		#if sys
+		Sys.println(msg);
+		#else
+		// Pass null to exclude the position.
+		haxe.Log.trace(msg, null);
+		#end
+	}
 
     static public function saveContent(fileName:String = "file", fileExtension:String = ".json", fileData:String = "you forgot something to add in your code"){
                 if (!FileSystem.exists(SUtil.getPath() + "saves")){
