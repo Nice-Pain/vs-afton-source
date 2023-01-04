@@ -9,10 +9,20 @@ import android.widget.Toast;
 import lime.app.Application;
 import openfl.events.UncaughtErrorEvent;
 import openfl.Lib;
+import flash.system.System;
+import flixel.FlxG;
 import haxe.CallStack.StackItem;
 import haxe.CallStack;
 import haxe.io.Path;
+import openfl.Lib;
+import openfl.utils.Assets as OpenFlAssets;
+import openfl.events.UncaughtErrorEvent;
+import openfl.utils.Assets;
+#if (sys && !ios)
 import sys.FileSystem;
+import sys.io.File;
+#end
+
 class SUtil
 {
     #if android
