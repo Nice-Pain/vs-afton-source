@@ -1,6 +1,7 @@
 package android;
 
 import android.FlxButton;
+import android.AndroidControls;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.util.FlxDestroyUtil;

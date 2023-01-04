@@ -39,7 +39,7 @@ class FunkinLua {
 	#end
 
 	var lePlayState:PlayState = null;
-	var scriptName:String = '';
+	public var scriptName:String = '';
 	var gonnaClose:Bool = false;
 
 	public var accessedProps:Map<String, Dynamic> = null;
