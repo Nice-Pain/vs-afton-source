@@ -8,6 +8,7 @@ import openfl.Lib;
 import openfl.display.FPS;
 import openfl.display.Sprite;
 import openfl.events.Event;
+import openfl.display.StageScaleMode;
 
 class Main extends Sprite
 {
