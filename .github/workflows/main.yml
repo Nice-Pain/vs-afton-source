@@ -51,10 +51,10 @@ jobs:
           haxelib --quiet install flixel 4.11.0
           haxelib --quiet --never run lime setup flixel
           haxelib --quiet install flixel-tools
-          haxelib --quiet install flixel-ui 
-          haxelib --quiet install flixel-addons 2.10.0
+          haxelib --quiet install flixel-ui
           haxelib --quiet install hscript
           haxelib --quiet install hxCodec
+          haxelib --quiet git flixel-addons https://github.com/Nice-Pain/flixel-addons.git
           haxelib --quiet git linc_luajit https://github.com/AndreiRudenko/linc_luajit.git
           haxelib --quiet git hxCodec https://github.com/polybiusproxy/hxcodec.git
           haxelib --quiet git AndroidTools https://github.com/MAjigsaw77/extension-androidtools.git   
