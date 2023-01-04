@@ -1653,7 +1653,13 @@ class PlayState extends MusicBeatState
 		}
 		
 		if(doPush) 
+		{
+			for (script in luaArray)
+			{
+				if(script.scriptName == luaFile) return;
+			}
 			luaArray.push(new FunkinLua(luaFile));
+		}
 		#end
 		
 		var daSong:String = Paths.formatToSongPath(curSong);
@@ -3299,7 +3305,7 @@ class PlayState extends MusicBeatState
 	function doDeathCheck() {
 		if (health <= 0 && !practiceMode && !isDead)
 		{
-			var ret:Dynamic = callOnLuas('onGameOver', []);
+			var ret:Dynamic = callOnLuas('onGameOver', [], false);
 			if(ret != FunkinLua.Function_Stop) {
 				boyfriend.stunned = true;
 				deathCounter++;
@@ -5253,15 +5259,12 @@ class PlayState extends MusicBeatState
 			if(exclusions.contains(script.scriptName))
 				continue;
 			var ret:Dynamic = script.call(event, args);
-			if(ret == FunkinLua.Function_StopLua && !ignoreStops)
+			if(ret == FunkinLua.Function_Stop && !ignoreStops)
 				break;
 			
 			// had to do this because there is a bug in haxe where Stop != Continue doesnt work
-			var bool:Bool = ret == FunkinLua.Function_Continue;
-			if(!bool) {
-				returnVal = cast ret;
+			if(ret != FunkinLua.Function_Continue)
 				returnVal = ret;
-			}
 		}
 		#end
 		//trace(event, returnVal);
@@ -5300,7 +5303,7 @@ class PlayState extends MusicBeatState
 		setOnLuas('ghostMisses', songMisses);
 		setOnLuas('hits', songHits);
 
-		var ret:Dynamic = callOnLuas('onRecalculateRating', []);
+		var ret:Dynamic = callOnLuas('onRecalculateRating', [], false);
 		if(ret != FunkinLua.Function_Stop) {
 			ratingPercent = songScore / ((songHits + songMisses - ghostMisses) * 350);
 			if(!Math.isNaN(ratingPercent) && ratingPercent < 0) ratingPercent = 0;
