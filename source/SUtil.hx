@@ -29,8 +29,8 @@ class SUtil
 {
     #if android
     private static var aDir:String = null;
-    private static var sPath:String = AndroidTools.getExternalStorageDirectory();  
-    private static var grantedPermsList:Array<Permissions> = AndroidTools.getGrantedPermissions();  
+    private static var sPath:String = Permissions.getExternalStorageDirectory();  
+    private static var grantedPermsList:Array<Permissions> = Permissions.getGrantedPermissions();  
     #end
 
     public static function getPath():String #if android return Environment.getExternalStorageDirectory() + '/' + '.' + Lib.application.meta.get('file') +
