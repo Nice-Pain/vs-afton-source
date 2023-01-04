@@ -61,11 +61,11 @@ class FlxHitbox extends FlxSpriteGroup
 
 	private function createHint(X:Float, Y:Float, Frames:String, Color:Int = 0xFFFFFF):FlxButton
 	{
-		hitboxframes = getHitboxFrames().getByName(Frames);
+		var hitboxframes = getHitboxFrames().getByName(Frames);
 		var graphic:FlxGraphic = FlxGraphic.fromFrame(hitboxframes);
-		var button = new FlxButton(X, Y);
-		button.loadGraphic(graphic);
-		button.alpha = 0.00001;
+		var hint = new FlxButton(X, Y);
+		hint.loadGraphic(graphic);
+		hint.alpha = 0.00001;
 		hint.setGraphicSize(Std.int(FlxG.width / 4), FlxG.height);
 		hint.updateHitbox();
 		hint.solid = false;
