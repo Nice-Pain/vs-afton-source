@@ -23,6 +23,8 @@ import sys.FileSystem;
 import sys.io.File;
 #end
 
+using StringTools;
+
 class SUtil
 {
     #if android
