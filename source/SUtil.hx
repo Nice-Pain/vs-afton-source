@@ -1,8 +1,10 @@
 package;
 
 #if android
-import android.Tools;
 import android.Permissions;
+import android.os.Build;
+import android.os.Environment;
+import android.widget.Toast;
 #end
 import lime.app.Application;
 import openfl.events.UncaughtErrorEvent;
