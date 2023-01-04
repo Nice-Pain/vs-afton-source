@@ -1,6 +1,6 @@
-package android.flixel;
+package android;
 
-import android.flixel.FlxButton;
+import android.FlxButton;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.util.FlxDestroyUtil;
