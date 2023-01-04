@@ -59,8 +59,14 @@ class FlxHitbox extends FlxSpriteGroup
 		buttonRight = null;
 	}
 
+        public static function getHitboxFrames():FlxAtlasFrames
+	{
+		return Paths.getSparrowAtlas('androidcontrols/hitbox');
+	}
+
 	private function createHint(X:Float, Y:Float, Frames:String, Color:Int = 0xFFFFFF):FlxButton
 	{
+                var hintTween:FlxTween = null;
 		var hitboxframes = getHitboxFrames().getByName(Frames);
 		var graphic:FlxGraphic = FlxGraphic.fromFrame(hitboxframes);
 		var hint = new FlxButton(X, Y);
