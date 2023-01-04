@@ -2,11 +2,11 @@ package android;
 
 import flixel.util.FlxColor;
 import flixel.math.FlxPoint;
-import flixel.ui.FlxButton;
 import flixel.text.FlxText;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import android.FlxHitbox;
+import android.FlxButton;
 import android.AndroidControls.Config;
 import android.FlxVirtualPad;
 

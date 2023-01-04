@@ -30,17 +30,6 @@ class Config {
 		return save.data.buttonsmode[0];
 	}
 
-	public static function getOpacity():Float
-	{
-		if (FlxG.save.data.androidControlsOpacity == null)
-		{
-			FlxG.save.data.androidControlsOpacity = 0.6;
-			FlxG.save.flush();
-		}
-
-		return FlxG.save.data.androidControlsOpacity;
-	}
-
 	public function savecustom(_pad:FlxVirtualPad) {
 		if (save.data.buttons == null)
 		{
@@ -142,6 +131,16 @@ class AndroidControls extends FlxSpriteGroup
 		}
 	}
 
+public static function getOpacity():Float
+	{
+		if (FlxG.save.data.androidControlsOpacity == null)
+		{
+			FlxG.save.data.androidControlsOpacity = 0.6;
+			FlxG.save.flush();
+		}
+
+		return FlxG.save.data.androidControlsOpacity;
+	}
 
 	public static function getModeFromNumber(modeNum:Int):ControlsGroup {
 		return switch (modeNum)
