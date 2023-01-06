@@ -7,6 +7,7 @@ import flixel.FlxBasic;
 import flixel.FlxSprite;
 #if android
 import flixel.input.actions.FlxActionInput;
+import android.AndroidControls.AndroidControls;
 import android.FlxVirtualPad;
 #end
 
@@ -29,6 +30,7 @@ class MusicBeatSubstate extends FlxSubState
 
 	#if android
 	var _virtualpad:FlxVirtualPad;
+	var androidc:AndroidControls;
 	var trackedinputsUI:Array<FlxActionInput> = [];
 	var trackedinputsNOTES:Array<FlxActionInput> = [];
 	#end
