@@ -1,7 +1,7 @@
 package android;
 
-import android.flixel.FlxHitbox;
-import android.flixel.FlxVirtualPad;
+import android.FlxHitbox;
+import android.FlxVirtualPad;
 import flixel.FlxG;
 import flixel.group.FlxSpriteGroup;
 import flixel.math.FlxPoint;
