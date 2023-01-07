@@ -1,7 +1,7 @@
 package android;
 
 import android.AndroidControls;
-import android.FlxHitboxSupport;
+import android.FlxHitboxSupport as FlxButton;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.util.FlxDestroyUtil;
@@ -64,7 +64,7 @@ class FlxHitbox extends FlxSpriteGroup
 		return Paths.getSparrowAtlas('androidcontrols/hitbox');
 	}
 
-	private function createHint(X:Float, Y:Float, Frames:String, Color:Int = 0xFFFFFF):FlxHitboxSupport
+	private function createHint(X:Float, Y:Float, Frames:String, Color:Int = 0xFFFFFF):FlxButton
 	{
                 var hintTween:FlxTween = null;
 		var hitboxframes = getHitboxFrames().getByName(Frames);
