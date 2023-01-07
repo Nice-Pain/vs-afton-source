@@ -508,6 +508,7 @@ class ControlsSubstate extends MusicBeatSubstate {
 
 	var leaving:Bool = false;
 	var bindingTime:Float = 0;
+
 	override function update(elapsed:Float) {
 		if(rebindingKey < 0) {
 			if (controls.UI_UP_P) {
@@ -541,8 +542,8 @@ class ControlsSubstate extends MusicBeatSubstate {
 			}
 
 			if(controls.ACCEPT && nextAccept <= 0) {
-				if(optionShit[curSelected] == defaultKey) {
-					controlArray = ClientPrefs.defaultKeys.copy();
+				if(optionShit[curSelected][0] == defaultKey) {
+					ClientPrefs.keyBinds = ClientPrefs.defaultKeys.copy();
 					reloadKeys();
 					changeSelection();
 					FlxG.sound.play(Paths.sound('confirmMenu'));

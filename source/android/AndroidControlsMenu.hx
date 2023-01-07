@@ -7,7 +7,7 @@ import flixel.text.FlxText;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import android.FlxHitbox;
-import android.AndroidControls.Config;
+import android.AndroidControls;
 import android.FlxVirtualPad;
 
 using StringTools;
@@ -24,17 +24,13 @@ class AndroidControlsMenu extends MusicBeatState
 	var leftArrow:FlxSprite;
 	var rightArrow:FlxSprite;
 	var controlitems:Array<String> = ['Pad-Right','Pad-Left','Pad-Custom','Duo','Hitbox','Keyboard'];
-	var curSelected:Int = 0;
+	var curSelected:Int = AndroidControls.getMode();
 	var buttonistouched:Bool = false;
 	var bindbutton:FlxButton;
-	var config:Config;
 
 	override public function create():Void
 	{
 		super.create();
-		
-		config = new Config();
-		curSelected = config.getcontrolmode();
 
 		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
 		bg.scrollFactor.set();
@@ -252,20 +248,16 @@ class AndroidControlsMenu extends MusicBeatState
 	}
 
 	function save() {
-		config.setcontrolmode(curSelected);
+		AndroidControls.setMode(curSelected);
 		var daChoice:String = controlitems[Math.floor(curSelected)];
 
 		if (daChoice == 'Pad-Custom'){
-			savecustom();
+			AndroidControls.setCustomMode(virtualPad);
 		}
 	}
 
-	function savecustom() {
-		config.savecustom(vpad);
-	}
-
 	function loadcustom():Void{
-		vpad = config.loadcustom(vpad);	
+		vpad = AndroidControls.getCustomMode(vpad);	
 	}
 
 	function resizebuttons(vpad:FlxVirtualPad, ?int:Int = 200) {
