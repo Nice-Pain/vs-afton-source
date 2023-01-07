@@ -1,7 +1,6 @@
 package android;
 
-import android.AndroidControls;
-import android.FlxHitboxSupport as FlxButton;
+import android.FlxButton;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.util.FlxDestroyUtil;
@@ -59,25 +58,20 @@ class FlxHitbox extends FlxSpriteGroup
 		buttonRight = null;
 	}
 
-        public static function getHitboxFrames():FlxAtlasFrames
+	private function createHint(X:Float, Y:Float, Graphic:String, Color:Int = 0xFFFFFF):FlxButton
 	{
-		return Paths.getSparrowAtlas('androidcontrols/hitbox');
-	}
-
-	private function createHint(X:Float, Y:Float, Frames:String, Color:Int = 0xFFFFFF):FlxButton
-	{
-                var hintTween:FlxTween = null;
-		var hitboxframes = getHitboxFrames().getByName(Frames);
-		var graphic:FlxGraphic = FlxGraphic.fromFrame(hitboxframes);
-		var hint = new FlxButton(X, Y);
-		hint.loadGraphic(graphic);
-		hint.alpha = 0.00001;
+		var hintTween:FlxTween = null;
+		var hint:FlxButton = new FlxButton(X, Y);
+		hint.loadGraphic(FlxGraphic.fromFrame(FlxAtlasFrames.fromSparrow(Assets.getBitmapData('assets/android/hitbox.png'),
+			Assets.getText('assets/android/hitbox.xml'))
+			.getByName(Graphic)));
 		hint.setGraphicSize(Std.int(FlxG.width / 4), FlxG.height);
 		hint.updateHitbox();
 		hint.solid = false;
 		hint.immovable = true;
 		hint.scrollFactor.set();
 		hint.color = Color;
+		hint.alpha = 0.00001;
 		hint.onDown.callback = function()
 		{
 			if (hintTween != null)
