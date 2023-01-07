@@ -98,8 +98,11 @@ class FlxHitbox extends FlxSpriteGroup
 				hintTween = null;
 			}});
 		}
-		hint.onOver.callback = hint.onDown.callback;
-		hint.onOut.callback = hint.onUp.callback;
+		button.onOut.callback = function (){
+			FlxTween.num(button.alpha, 0, 0.2, {ease:FlxEase.circInOut}, function(alpha:Float){ 
+				button.alpha = alpha;
+			});
+		}
 		#if FLX_DEBUG
 		hint.ignoreDrawDebug = true;
 		#end
