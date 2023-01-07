@@ -41,7 +41,7 @@ class FlxHitboxSupport extends FlxTypedButton<FlxText>
 	public var text(get, set):String;
 
 	/**
-	 * Creates a new `FlxButton` object with a gray background
+	 * Creates a new `FlxHitboxSupport` object with a gray background
 	 * and a callback function on the UI thread.
 	 *
 	 * @param   X         The x position of the button.
@@ -143,8 +143,8 @@ class FlxTypedButton<T:FlxSprite> extends FlxSprite implements IFlxInput
 	public var maxInputMovement:Float = Math.POSITIVE_INFINITY;
 
 	/**
-	 * Shows the current state of the button, either `FlxButton.NORMAL`,
-	 * `FlxButton.HIGHLIGHT` or `FlxButton.PRESSED`.
+	 * Shows the current state of the button, either `FlxHitboxSupport.NORMAL`,
+	 * `FlxHitboxSupport.HIGHLIGHT` or `FlxHitboxSupport.PRESSED`.
 	 */
 	public var status(default, set):Int;
 
@@ -208,13 +208,13 @@ class FlxTypedButton<T:FlxSprite> extends FlxSprite implements IFlxInput
 		onOver = new FlxButtonEvent();
 		onOut = new FlxButtonEvent();
 
-		status = FlxButton.NORMAL;
+		status = FlxHitboxSupport.NORMAL;
 
 		// Since this is a UI element, the default scrollFactor is (0, 0)
 		scrollFactor.set();
 
-		statusAnimations[FlxButton.HIGHLIGHT] = 'normal';
-		labelAlphas[FlxButton.HIGHLIGHT] = 1;
+		statusAnimations[FlxHitboxSupport.HIGHLIGHT] = 'normal';
+		labelAlphas[FlxHitboxSupport.HIGHLIGHT] = 1;
 
 		input = new FlxInput(0);
 	}
@@ -223,9 +223,9 @@ class FlxTypedButton<T:FlxSprite> extends FlxSprite implements IFlxInput
 	{
 		super.graphicLoaded();
 
-		setupAnimation('normal', FlxButton.NORMAL);
-		setupAnimation('highlight', FlxButton.HIGHLIGHT);
-		setupAnimation('pressed', FlxButton.PRESSED);
+		setupAnimation('normal', FlxHitboxSupport.NORMAL);
+		setupAnimation('highlight', FlxHitboxSupport.HIGHLIGHT);
+		setupAnimation('pressed', FlxHitboxSupport.PRESSED);
 	}
 
 	function loadDefaultGraphic():Void
@@ -359,7 +359,7 @@ class FlxTypedButton<T:FlxSprite> extends FlxSprite implements IFlxInput
 		if (currentInput != null && currentInput.justReleased && overlapFound)
 			onUpHandler();
 
-		if (status != FlxButton.NORMAL && (!overlapFound || (currentInput != null && currentInput.justReleased)))
+		if (status != FlxHitboxSupport.NORMAL && (!overlapFound || (currentInput != null && currentInput.justReleased)))
 			onOutHandler();
 	}
 
@@ -402,7 +402,7 @@ class FlxTypedButton<T:FlxSprite> extends FlxSprite implements IFlxInput
 			currentInput = input;
 			onDownHandler();
 		}
-		else if (status == FlxButton.NORMAL)
+		else if (status == FlxHitboxSupport.NORMAL)
 		{
 			// Allow 'swiping' to press a button (dragging it over the button while pressed)
 			if (allowSwiping && input.pressed)
@@ -432,7 +432,7 @@ class FlxTypedButton<T:FlxSprite> extends FlxSprite implements IFlxInput
 	 */
 	function onUpHandler():Void
 	{
-		status = FlxButton.NORMAL;
+		status = FlxHitboxSupport.NORMAL;
 		input.release();
 		currentInput = null;
 		// Order matters here, because onUp.fire() could cause a state change and destroy this object.
@@ -444,7 +444,7 @@ class FlxTypedButton<T:FlxSprite> extends FlxSprite implements IFlxInput
 	 */
 	function onDownHandler():Void
 	{
-		status = FlxButton.PRESSED;
+		status = FlxHitboxSupport.PRESSED;
 		input.press();
 		// Order matters here, because onDown.fire() could cause a state change and destroy this object.
 		onDown.fire();
@@ -455,7 +455,7 @@ class FlxTypedButton<T:FlxSprite> extends FlxSprite implements IFlxInput
 	 */
 	function onOverHandler():Void
 	{
-		status = FlxButton.HIGHLIGHT;
+		status = FlxHitboxSupport.HIGHLIGHT;
 		// Order matters here, because onOver.fire() could cause a state change and destroy this object.
 		onOver.fire();
 	}
@@ -465,7 +465,7 @@ class FlxTypedButton<T:FlxSprite> extends FlxSprite implements IFlxInput
 	 */
 	function onOutHandler():Void
 	{
-		status = FlxButton.NORMAL;
+		status = FlxHitboxSupport.NORMAL;
 		input.release();
 		// Order matters here, because onOut.fire() could cause a state change and destroy this object.
 		onOut.fire();
@@ -530,7 +530,7 @@ class FlxTypedButton<T:FlxSprite> extends FlxSprite implements IFlxInput
 }
 
 /** 
- * Helper function for `FlxButton` which handles its events.
+ * Helper function for `FlxHitboxSupport` which handles its events.
  */
 private class FlxButtonEvent implements IFlxDestroyable
 {
