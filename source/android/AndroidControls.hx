@@ -40,13 +40,13 @@ class AndroidControls extends FlxSpriteGroup
 				virtualPad = new FlxVirtualPad(RIGHT_FULL, NONE);
 				add(virtualPad);
 			case 1:
-				virtualPad = new FlxVirtualPad(LEFT_FULL, NONE);
+				virtualPad = new FlxVirtualPad(FULL, NONE);
 				add(virtualPad);
 			case 2:
 				virtualPad = AndroidControls.getCustomMode(new FlxVirtualPad(RIGHT_FULL, NONE));
 				add(virtualPad);
 			case 3:
-				virtualPad = new FlxVirtualPad(BOTH_FULL, NONE);
+				virtualPad = new FlxVirtualPad(DUO, NONE);
 				add(virtualPad);
 			case 4:
 				hitbox = new FlxHitbox();

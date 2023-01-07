@@ -451,7 +451,7 @@ class Controls extends FlxActionSet
 			case A_B | A_B_C | A_B_E | A_B_X_Y | A_B_C_X_Y | A_B_C_X_Y_Z | FULL:
 				inline forEachBound(Control.ACCEPT, (action, state) -> addbuttonUI(action, VirtualPad.buttonA, state));
 				inline forEachBound(Control.BACK, (action, state) -> addbuttonUI(action, VirtualPad.buttonB, state));
-			case NONE: // do nothing
+			case NONE | D: // do nothing
 		}
 	}
 
@@ -495,7 +495,7 @@ class Controls extends FlxActionSet
 			case A_B | A_B_C | A_B_E | A_B_X_Y | A_B_C_X_Y | A_B_C_X_Y_Z | FULL:
 				inline forEachBound(Control.ACCEPT, (action, state) -> addbuttonNOTES(action, VirtualPad.buttonA, state));
 				inline forEachBound(Control.BACK, (action, state) -> addbuttonNOTES(action, VirtualPad.buttonB, state));
-			case NONE: // do nothing
+			case NONE | D: // do nothing
 		}
 	}
 

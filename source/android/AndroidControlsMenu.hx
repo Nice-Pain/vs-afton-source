@@ -1,12 +1,12 @@
 package android;
 
-import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
 import flixel.math.FlxPoint;
 import flixel.text.FlxText;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import android.FlxHitbox;
+import android.FlxButton;
 import android.AndroidControls;
 import android.FlxVirtualPad;
 
@@ -233,7 +233,7 @@ class AndroidControlsMenu extends MusicBeatState
 		}
 	}
 
-	function movebutton(touch:flixel.input.touch.FlxTouch, button:flixel.ui.FlxButton) {
+	function movebutton(touch:flixel.input.touch.FlxTouch, button:android.FlxButton) {
 		button.x = touch.x - vpad.buttonUp.width / 2;
 		button.y = touch.y - vpad.buttonUp.height / 2;
 		bindbutton = button;
@@ -252,7 +252,7 @@ class AndroidControlsMenu extends MusicBeatState
 		var daChoice:String = controlitems[Math.floor(curSelected)];
 
 		if (daChoice == 'Pad-Custom'){
-			AndroidControls.setCustomMode(virtualPad);
+			AndroidControls.setCustomMode(vpad);
 		}
 	}
 
