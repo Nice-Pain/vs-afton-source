@@ -7,10 +7,9 @@ import flixel.graphics.FlxGraphic;
 import Controls;
 
 class ClientPrefs {
-	//TO DO: Redo ClientPrefs in a way that isn't too stupid
 	public static var downScroll:Bool = false;
 	public static var middleScroll:Bool = false;
-	public static var showFPS:Bool = true;
+	public static var showFPS:Bool = #if android false #else true #end;
 	public static var flashing:Bool = true;
 	public static var globalAntialiasing:Bool = true;
 	public static var noteSplashes:Bool = true;
@@ -62,6 +61,13 @@ class ClientPrefs {
 	];
 	public static var lastControls:Array<FlxKey> = defaultKeys.copy();
 
+	public static var defaultKeys:Map<String, Array<FlxKey>> = null;
+
+	public static function loadDefaultKeys() {
+		defaultKeys = keyBinds.copy();
+		//trace(defaultKeys);
+	}
+
 	public static function saveSettings() {
 		FlxG.save.data.downScroll = downScroll;
 		FlxG.save.data.middleScroll = middleScroll;
@@ -92,8 +98,8 @@ class ClientPrefs {
 		FlxG.save.flush();
 
 		var save:FlxSave = new FlxSave();
-		save.bind('controls', 'ninjamuffin99'); //Placing this in a separate save so that it can be manually deleted without removing your Score and stuff
-		save.data.customControls = lastControls;
+		save.bind('controls' #if (flixel < "5.0.0"), 'ninjamuffin99' #end); //Placing this in a separate save so that it can be manually deleted without removing your Score and stuff
+		save.data.customControls = keyBinds;
 		save.flush();
 		FlxG.log.add("Settings saved!");
 	}
@@ -161,13 +167,13 @@ class ClientPrefs {
 		if(FlxG.save.data.hideTime != null) {
 			hideTime = FlxG.save.data.hideTime;
 		}
-
+		
 		var save:FlxSave = new FlxSave();
 		save.bind('controls', 'ninjamuffin99');
 		if(save != null && save.data.customControls != null) {
 			reloadControls(save.data.customControls);
+			}
 		}
-	}
 
 	public static function reloadControls(newKeys:Array<FlxKey>) {
 		ClientPrefs.removeControls(ClientPrefs.lastControls);
@@ -175,7 +181,7 @@ class ClientPrefs {
 		ClientPrefs.loadControls(ClientPrefs.lastControls);
 	}
 
-	private static function removeControls(controlArray:Array<FlxKey>) {
+private static function removeControls(controlArray:Array<FlxKey>) {
 		for (i in 0...keyBinds.length) {
 			var controlValue:Int = i*2;
 			var controlsToRemove:Array<FlxKey> = [];
@@ -189,6 +195,7 @@ class ClientPrefs {
 			}
 		}
 	}
+
 	private static function loadControls(controlArray:Array<FlxKey>) {
 		for (i in 0...keyBinds.length) {
 			var controlValue:Int = i*2;
@@ -197,8 +204,8 @@ class ClientPrefs {
 				if(controlArray[controlValue+j] != NONE) {
 					controlsToAdd.push(controlArray[controlValue+j]);
 				}
-			}
-			if(controlsToAdd.length > 0) {
+	}
+	if(controlsToAdd.length > 0) {
 				PlayerSettings.player1.controls.bindKeys(keyBinds[i][0], controlsToAdd);
 			}
 		}
