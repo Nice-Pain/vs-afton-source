@@ -2,6 +2,7 @@ package android;
 
 import flash.events.MouseEvent;
 import flixel.FlxG;
+import flixel.FlxCamera;
 import flixel.FlxSprite;
 import flixel.graphics.atlas.FlxAtlas;
 import flixel.graphics.atlas.FlxNode;
@@ -14,9 +15,7 @@ import flixel.math.FlxPoint;
 import flixel.system.FlxSound;
 import flixel.text.FlxText;
 import flixel.util.FlxDestroyUtil;
-#if FLX_TOUCH
 import flixel.input.touch.FlxTouch;
-#end
 
 /**
  * A simple button class that calls a function when clicked by the mouse.
