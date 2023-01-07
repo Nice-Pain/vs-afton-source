@@ -184,8 +184,6 @@ class FlxVirtualPad extends FlxSpriteGroup
 		buttonY = null;
 		buttonZ = null;
 	}
-
-	}
 }
 
 enum FlxDPadMode
