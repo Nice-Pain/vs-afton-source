@@ -12,9 +12,9 @@ import flixel.input.gamepad.FlxGamepadInputID;
 import flixel.input.keyboard.FlxKey;
 #if android
 import flixel.group.FlxGroup;
+import flixel.ui.FlxButton;
 import android.FlxHitbox;
 import android.FlxVirtualPad;
-import android.FlxButton;
 #end
 
 #if (haxe >= "4.0.0")

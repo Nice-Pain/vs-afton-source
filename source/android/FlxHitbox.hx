@@ -1,7 +1,7 @@
 package android;
 
-import android.FlxButton;
 import android.AndroidControls;
+import android.FlxHitboxSupport;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.util.FlxDestroyUtil;
@@ -98,11 +98,8 @@ class FlxHitbox extends FlxSpriteGroup
 				hintTween = null;
 			}});
 		}
-		hint.onOut.callback = function (){
-			FlxTween.num(hint.alpha, 0, 0.2, {ease:FlxEase.circInOut}, function(alpha:Float){ 
-				hint.alpha = alpha;
-			});
-		}
+		hint.onOver.callback = hint.onDown.callback;
+		hint.onOut.callback = hint.onUp.callback;
 		#if FLX_DEBUG
 		hint.ignoreDrawDebug = true;
 		#end
