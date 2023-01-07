@@ -25,22 +25,6 @@ class ClientPrefs {
 	public static var ghostTapping:Bool = true;
 	public static var hideTime:Bool = false;
 
-	public static var defaultKeys:Array<FlxKey> = [
-		A, LEFT,			//Note Left
-		S, DOWN,			//Note Down
-		W, UP,				//Note Up
-		D, RIGHT,			//Note Right
-
-		A, LEFT,			//UI Left
-		S, DOWN,			//UI Down
-		W, UP,				//UI Up
-		D, RIGHT,			//UI Right
-
-		R, NONE,			//Reset
-		SPACE, ENTER,		//Accept
-		BACKSPACE, ESCAPE,	//Back
-		ENTER, ESCAPE		//Pause
-	];
 	//Every key has two binds, these binds are defined on defaultKeys! If you want your control to be changeable, you have to add it on ControlsSubState (inside OptionsState)'s list
 	public static var keyBinds:Array<Dynamic> = [
 		//Key Bind, Name for ControlsSubState
