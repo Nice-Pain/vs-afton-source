@@ -1,9 +1,9 @@
 package;
 
 #if android
-import android.flixel.FlxButton;
-import android.flixel.FlxHitbox;
-import android.flixel.FlxVirtualPad;
+import android.FlxButton;
+import android.FlxHitbox;
+import android.FlxVirtualPad;
 #end
 import flixel.FlxG;
 import flixel.input.FlxInput;
