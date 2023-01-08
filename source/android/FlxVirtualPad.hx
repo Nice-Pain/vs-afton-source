@@ -142,7 +142,6 @@ class FlxVirtualPad extends FlxSpriteGroup
 		var button:FlxButton = new FlxButton(X, Y);
 		var frames = getVirtualInputFrames().getByName(Graphic);
 		button.frames = FlxTileFrames.fromFrame(frames, FlxPoint.get(Width, Height));
-			FlxPoint.get(Width, Height));
 		button.resetSizeFromFrame();
 		button.solid = false;
 		button.immovable = true;
