@@ -42,7 +42,7 @@ class FlxVirtualPad extends FlxSpriteGroup
 	/**
 	 * Create a gamepad.
 	 *
-	 * @param   DPadMode     The D-Pad mode. `LEFT_FULL` for example.
+	 * @param   DPadMode     The D-Pad mode. `FULL` for example.
 	 * @param   ActionMode   The action buttons mode. `A_B_C` for example.
 	 */
 	public function new(DPad:FlxDPadMode, Action:FlxActionMode)
@@ -140,9 +140,8 @@ class FlxVirtualPad extends FlxSpriteGroup
 	public function createButton(X:Float, Y:Float, Width:Int, Height:Int, Graphic:String, Color:Int = 0xFFFFFF):FlxButton
 	{
 		var button:FlxButton = new FlxButton(X, Y);
-		button.frames = FlxTileFrames.fromFrame(FlxAtlasFrames.fromSparrow(Assets.getBitmapData('assets/android/virtualpad.png'),
-			Assets.getText('assets/android/virtualpad.xml'))
-			.getByName(Graphic),
+		var frames = getVirtualInputFrames().getByName(Graphic);
+		button.frames = FlxTileFrames.fromFrame(frames, FlxPoint.get(Width, Height));
 			FlxPoint.get(Width, Height));
 		button.resetSizeFromFrame();
 		button.solid = false;
@@ -155,6 +154,11 @@ class FlxVirtualPad extends FlxSpriteGroup
 		#end
 
 		return button;
+	}
+
+	public static function getVirtualInputFrames():FlxAtlasFrames
+	{
+		return Paths.getPackerAtlas('androidcontrols/virtualpad');
 	}
 
 	/**
