@@ -185,7 +185,7 @@ class NotesSubstate extends MusicBeatSubstate
 		for (i in 0...ClientPrefs.arrowHSV.length) {
 			var yPos:Float = (165 * i) + 35;
 			for (j in 0...3) {
-				var optionText:Alphabet = new Alphabet(0, yPos, Std.string(ClientPrefs.arrowHSV[i][j]));
+				var optionText:Alphabet = new Alphabet(0, yPos, Std.string(ClientPrefs.arrowHSV[i][j]), true);
 				optionText.x = posX + (225 * j) + 100 - ((optionText.lettersArray.length * 90) / 2);
 				grpNumbers.add(optionText);
 			}
@@ -213,13 +213,13 @@ class NotesSubstate extends MusicBeatSubstate
 			newShader.brightness = ClientPrefs.arrowHSV[i][2] / 100;
 			shaderArray.push(newShader);
 		}
-		hsvText = new Alphabet(0, 0, "Hue    Saturation  Brightness", false, false, 0, 0.65);
+		hsvText = new Alphabet(0, 0, "Hue    Saturation  Brightness", true, false, 0, 0.65);
 		add(hsvText);
 		changeSelection();
 
-                #if android
-	        addVirtualPad(FULL, A_B_C);
-                #end
+		#if android
+		addVirtualPad(FULL, A_B_C);
+		#end
 	}
 
 	var changingNote:Bool = false;
@@ -244,8 +244,10 @@ class NotesSubstate extends MusicBeatSubstate
 				}
 			} else {
 				var add:Float = 90;
-				switch(typeSelected) {
-					case 1 | 2: add = 50;
+				switch(typeSelected)
+				{
+					case 1 | 2:
+						add = 50;
 				}
 				if(controls.UI_LEFT) {
 					updateValue(elapsed * -add);
@@ -334,12 +336,12 @@ class NotesSubstate extends MusicBeatSubstate
 				grpNotes.forEachAlive(function(spr:FlxSprite) {
 					spr.alpha = 0;
 				});
-			        #if android
-                                flixel.addons.transition.FlxTransitionableState.skipNextTransOut = true;
-			        FlxG.resetState();
-                                #else
-                                close();
-                                #end
+				#if android
+				flixel.addons.transition.FlxTransitionableState.skipNextTransOut = true;
+				FlxG.resetState();
+				#else
+				close();
+				#end
 			}
 			changingNote = false;
 			FlxG.sound.play(Paths.sound('cancelMenu'));
@@ -354,7 +356,7 @@ class NotesSubstate extends MusicBeatSubstate
 	function changeSelection(change:Int = 0) {
 		curSelected += change;
 		if (curSelected < 0)
-			curSelected = ClientPrefs.arrowHSV.length-1;
+			curSelected = ClientPrefs.arrowHSV.length - 1;
 		if (curSelected >= ClientPrefs.arrowHSV.length)
 			curSelected = 0;
 
@@ -404,9 +406,12 @@ class NotesSubstate extends MusicBeatSubstate
 		curValue = 0;
 		ClientPrefs.arrowHSV[selected][type] = 0;
 		switch(type) {
-			case 0: shaderArray[selected].hue = 0;
-			case 1: shaderArray[selected].saturation = 0;
-			case 2: shaderArray[selected].brightness = 0;
+			case 0:
+				shaderArray[selected].hue = 0;
+			case 1:
+				shaderArray[selected].saturation = 0;
+			case 2:
+				shaderArray[selected].brightness = 0;
 		}
 		grpNumbers.members[(selected * 3) + type].changeText('0');
 	}
@@ -415,7 +420,8 @@ class NotesSubstate extends MusicBeatSubstate
 		var roundedValue:Int = Math.round(curValue);
 		var max:Float = 180;
 		switch(typeSelected) {
-			case 1 | 2: max = 100;
+			case 1 | 2:
+				max = 100;
 		}
 
 		if(roundedValue < -max) {
@@ -427,9 +433,12 @@ class NotesSubstate extends MusicBeatSubstate
 		ClientPrefs.arrowHSV[curSelected][typeSelected] = roundedValue;
 
 		switch(typeSelected) {
-			case 0: shaderArray[curSelected].hue = roundedValue / 360;
-			case 1: shaderArray[curSelected].saturation = roundedValue / 100;
-			case 2: shaderArray[curSelected].brightness = roundedValue / 100;
+			case 0:
+				shaderArray[curSelected].hue = roundedValue / 360;
+			case 1:
+				shaderArray[curSelected].saturation = roundedValue / 100;
+			case 2:
+				shaderArray[curSelected].brightness = roundedValue / 100;
 		}
 		grpNumbers.members[(curSelected * 3) + typeSelected].changeText(Std.string(roundedValue));
 	}
@@ -509,7 +518,8 @@ class ControlsSubstate extends MusicBeatSubstate {
 			if(!isCentered) {
 				addBindTexts(optionText, i);
 				bindLength++;
-				if(curSelected < 0) curSelected = i;
+				if(curSelected < 0)
+					curSelected = i;
 			}
 		}
 		changeSelection();
@@ -607,7 +617,7 @@ class ControlsSubstate extends MusicBeatSubstate {
 		}
 		return num;
 	}
-	
+
 	function changeSelection(change:Int = 0) {
 		do {
 			curSelected += change;
@@ -630,7 +640,7 @@ class ControlsSubstate extends MusicBeatSubstate {
 			item.targetY = bullShit - curSelected;
 			bullShit++;
 
-			if(!unselectableCheck(bullShit-1)) {
+			if(!unselectableCheck(bullShit - 1)) {
 				item.alpha = 0.6;
 				if (item.targetY == 0) {
 					item.alpha = 1;
@@ -735,7 +745,7 @@ class ControlsSubstate extends MusicBeatSubstate {
 			item.targetY = bullShit - curSelected;
 			bullShit++;
 
-			if(!unselectableCheck(bullShit-1)) {
+			if (!unselectableCheck(bullShit - 1)) {
 				item.alpha = 0.6;
 				if (item.targetY == 0) {
 					item.alpha = 1;
@@ -790,7 +800,7 @@ class PreferencesSubstate extends MusicBeatSubstate
 		'Hide Song Length',
 		'Flashing Lights',
 		'Camera Zooms',
-                'FPS Counter'
+		'FPS Counter'
 	];
 
 	private var grpOptions:FlxTypedGroup<Alphabet>;
@@ -824,7 +834,7 @@ class PreferencesSubstate extends MusicBeatSubstate
 		for (i in 0...options.length)
 		{
 			var isCentered:Bool = unselectableCheck(i);
-			var optionText:Alphabet = new Alphabet(0, 70 * i, options[i], false, false);
+			var optionText:Alphabet = new Alphabet(0, 70 * i, options[i], true, false);
 			optionText.isMenuItem = true;
 			if(isCentered) {
 				optionText.screenCenter(X);
@@ -853,7 +863,7 @@ class PreferencesSubstate extends MusicBeatSubstate
 					checkboxNumber.push(i);
 					add(checkbox);
 				} else {
-					var valueText:AttachedText = new AttachedText('0', optionText.width + 80);
+					var valueText:AttachedText = new AttachedText('0', optionText.width + 80, 0, true);
 					valueText.sprTracker = optionText;
 					grpTexts.add(valueText);
 					textNumber.push(i);
@@ -876,9 +886,9 @@ class PreferencesSubstate extends MusicBeatSubstate
 		changeSelection();
 		reloadValues();
 
-                #if android
-	        addVirtualPad(FULL, A_B);
-                #end
+		#if android
+		addVirtualPad(FULL, A_B);
+		#end
 	}
 
 	var nextAccept:Int = 5;
@@ -912,11 +922,11 @@ class PreferencesSubstate extends MusicBeatSubstate
 			}
 			descText.alpha = 0;
 			#if android
-                        flixel.addons.transition.FlxTransitionableState.skipNextTransOut = true;
+			flixel.addons.transition.FlxTransitionableState.skipNextTransOut = true;
 			FlxG.resetState();
-                        #else
-                        close();
-                        #end
+			#else
+			close();
+			#end
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 		}
 
@@ -983,7 +993,7 @@ class PreferencesSubstate extends MusicBeatSubstate
 					case 'Persistent Cached Data':
 						ClientPrefs.imagesPersist = !ClientPrefs.imagesPersist;
 						FlxGraphic.defaultPersist = ClientPrefs.imagesPersist;
-					
+
 					case 'Hide Song Length':
 						ClientPrefs.hideTime = !ClientPrefs.hideTime;
 				}
@@ -994,31 +1004,36 @@ class PreferencesSubstate extends MusicBeatSubstate
 			if(controls.UI_LEFT || controls.UI_RIGHT) {
 				var add:Int = controls.UI_LEFT ? -1 : 1;
 				if(holdTime > 0.5 || controls.UI_LEFT_P || controls.UI_RIGHT_P)
-				switch(options[curSelected]) {
-					case 'Framerate':
-						ClientPrefs.framerate += add;
-						if(ClientPrefs.framerate < 60) ClientPrefs.framerate = 60;
-						else if(ClientPrefs.framerate > 240) ClientPrefs.framerate = 240;
+					switch(options[curSelected]) {
+						case 'Framerate':
+							ClientPrefs.framerate += add;
+							if(ClientPrefs.framerate < 60)
+								ClientPrefs.framerate = 60;
+							else if (ClientPrefs.framerate > 240)
+								ClientPrefs.framerate = 240;
 
-						if(ClientPrefs.framerate > FlxG.drawFramerate) {
-							FlxG.updateFramerate = ClientPrefs.framerate;
-							FlxG.drawFramerate = ClientPrefs.framerate;
-						} else {
-							FlxG.drawFramerate = ClientPrefs.framerate;
-							FlxG.updateFramerate = ClientPrefs.framerate;
-						}
-					case 'Note Delay':
-						var mult:Int = 1;
-						if(holdTime > 1.5) { //Double speed after 1.5 seconds holding
-							mult = 2;
-						}
-						ClientPrefs.noteOffset += add * mult;
-						if(ClientPrefs.noteOffset < 0) ClientPrefs.noteOffset = 0;
-						else if(ClientPrefs.noteOffset > 500) ClientPrefs.noteOffset = 500;
-				}
+							if(ClientPrefs.framerate > FlxG.drawFramerate) {
+								FlxG.updateFramerate = ClientPrefs.framerate;
+								FlxG.drawFramerate = ClientPrefs.framerate;
+							} else {
+								FlxG.drawFramerate = ClientPrefs.framerate;
+								FlxG.updateFramerate = ClientPrefs.framerate;
+							}
+						case 'Note Delay':
+							var mult:Int = 1;
+							if(holdTime > 1.5) { //Double speed after 1.5 seconds holding
+								mult = 2;
+							}
+							ClientPrefs.noteOffset += add * mult;
+							if(ClientPrefs.noteOffset < 0)
+								ClientPrefs.noteOffset = 0;
+							else if(ClientPrefs.noteOffset > 500)
+								ClientPrefs.noteOffset = 500;
+					}
 				reloadValues();
 
-				if(holdTime <= 0) FlxG.sound.play(Paths.sound('scrollMenu'));
+				if(holdTime <= 0)
+					FlxG.sound.play(Paths.sound('scrollMenu'));
 				holdTime += elapsed;
 			} else {
 				holdTime = 0;
@@ -1034,7 +1049,7 @@ class PreferencesSubstate extends MusicBeatSubstate
 		}
 		super.update(elapsed);
 	}
-	
+
 	function changeSelection(change:Int = 0)
 	{
 		do {
@@ -1043,7 +1058,8 @@ class PreferencesSubstate extends MusicBeatSubstate
 				curSelected = options.length - 1;
 			if (curSelected >= options.length)
 				curSelected = 0;
-		} while(unselectableCheck(curSelected));
+		}
+		while(unselectableCheck(curSelected));
 
 		var daText:String = '';
 		switch(options[curSelected]) {
@@ -1088,7 +1104,7 @@ class PreferencesSubstate extends MusicBeatSubstate
 			item.targetY = bullShit - curSelected;
 			bullShit++;
 
-			if(!unselectableCheck(bullShit-1)) {
+			if(!unselectableCheck(bullShit - 1)) {
 				item.alpha = 0.6;
 				if (item.targetY == 0) {
 					item.alpha = 1;
