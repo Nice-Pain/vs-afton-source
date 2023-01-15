@@ -386,7 +386,7 @@ class AftonMenuState extends MusicBeatState
 								case 'credits':
 									MusicBeatState.switchState(new CreditsState());
 								case 'options':
-									MusicBeatState.switchState(new OptionsState());
+									MusicBeatState.switchState(new options.OptionsState());
 										
 							}
 						});

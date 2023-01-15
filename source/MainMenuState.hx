@@ -228,7 +228,7 @@ class MainMenuState extends MusicBeatState
 							case 'afton':
 								playStory();
 							case 'options':
-								MusicBeatState.switchState(new OptionsState());
+								MusicBeatState.switchState(new options.OptionsState());
 						}
 					});		
 				}
