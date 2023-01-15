@@ -53,7 +53,7 @@ class AndroidControlsMenu extends MusicBeatState
 
 		var exitbutton = new FlxButton(FlxG.width - 200, 50, "Exit", function()
 		{
-			MusicBeatState.switchState(new OptionsState());
+			MusicBeatState.switchState(new options.OptionsState());
 		});
 		exitbutton.setGraphicSize(Std.int(exitbutton.width) * 3);
 		exitbutton.label.setFormat(null, 16, 0x333333, "center");
@@ -63,7 +63,7 @@ class AndroidControlsMenu extends MusicBeatState
 		var savebutton = new FlxButton(exitbutton.x, exitbutton.y + 100, "Save", function()
 		{
 			save();
-			MusicBeatState.switchState(new OptionsState());
+			MusicBeatState.switchState(new options.OptionsState());
 		});
 		savebutton.setGraphicSize(Std.int(savebutton.width) * 3);
 		savebutton.label.setFormat(null, 16, 0x333333, "center");

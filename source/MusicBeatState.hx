@@ -96,6 +96,15 @@ class MusicBeatState extends FlxUIState
 		super.destroy();
 	}
 
+	public function removeVirtualPad()
+	{
+		if (trackedinputsUI != [])
+			controls.removeFlxInput(trackedinputsUI);
+
+		if (_virtualPad != null)
+			remove(_virtualPad);
+	}
+
 	override function create() {
 		var skip:Bool = FlxTransitionableState.skipNextTransOut;
 		super.create();
