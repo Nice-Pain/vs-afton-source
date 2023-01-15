@@ -5259,12 +5259,14 @@ class PlayState extends MusicBeatState
 			if(exclusions.contains(script.scriptName))
 				continue;
 			var ret:Dynamic = script.call(event, args);
-			if(ret == FunkinLua.Function_Stop && !ignoreStops)
+			if(ret == FunkinLua.Function_StopLua && !ignoreStops)
 				break;
 			
 			// had to do this because there is a bug in haxe where Stop != Continue doesnt work
-			if(ret != FunkinLua.Function_Continue)
+			var bool:Bool = ret == FunkinLua.Function_Continue;
+			if(!bool) {
 				returnVal = ret;
+			}
 		}
 		#end
 		//trace(event, returnVal);

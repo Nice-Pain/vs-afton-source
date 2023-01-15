@@ -87,26 +87,26 @@
 	<!-- _______________________________ Libraries ______________________________ -->
 
 	<haxelib name="flixel" />
-	<!-- haxedev set='webgl' /> -->
-
-	<haxelib name="hxCodec" if="desktop || android" />
+	<haxedev set='webgl' />
 
 	<!--In case you want to use the addons package-->
-	<!-- haxelib name="flixel-addons" /> -->
-	<!-- haxelib name="hscript" /> -->
+	<haxelib name="flixel-addons" />
+	<haxelib name="hscript" />
 
 	<!--In case you want to use the ui package-->
-	<!-- <haxelib name="flixel-ui" /> -->
-	<!-- <haxelib name="linc_luajit" if="LUA_ALLOWED"/> -->
-	<!-- <haxelib name="faxe" if='switch'/> -->
-	<!-- <haxelib name="hxCodec" if="VIDEOS_ALLOWED"/> -->
-	<!-- <haxelib name="discord_rpc" if="desktop"/> -->
+	<haxelib name="flixel-ui" />
+	<haxelib name="linc_luajit" if="LUA_ALLOWED"/>
+	<haxelib name="faxe" if='switch'/>
+	<haxelib name="hxCodec" if="desktop || android" />
+	<haxelib name="discord_rpc" if="desktop"/>
 	<!-- <haxelib name="hxcpp-debug-server" if="desktop"/> -->
-    	<!-- <haxelib name="extension-videoview" if="android"/> -->
-    	<!-- <haxelib name="AndroidTools" if="android"/> -->
+	<section if="android">
+    	<haxelib name="extension-videoview" />
+    	<haxelib name="AndroidTools" />
 
-        <!-- config:android permission="android.permission.read_external_storage" if="android"/> -->
-        <!-- config:android permission="android.permission.write_external_storage" if="android"/> -->
+        <config:android permission="android.permission.read_external_storage" />
+        <config:android permission="android.permission.write_external_storage" />
+	</section>
 
 	<!-- <haxelib name="markdown" /> -->
 	<!-- <haxelib name="HtmlParser" /> -->
