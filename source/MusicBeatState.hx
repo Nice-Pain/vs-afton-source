@@ -101,8 +101,8 @@ class MusicBeatState extends FlxUIState
 		if (trackedinputsUI != [])
 			controls.removeFlxInput(trackedinputsUI);
 
-		if (_virtualPad != null)
-			remove(_virtualPad);
+		if (_virtualpad != null)
+			remove(_virtualpad);
 	}
 
 	override function create() {
